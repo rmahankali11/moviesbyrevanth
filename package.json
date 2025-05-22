@@ -1,0 +1,18 @@
+{
+  "name": "capstone-project-4---movie-api-project",
+  "version": "1.0.0",
+  "description": "Project where you can search for movies, get a random movie, and eventually be able to make your own watchlist and reviews, like letterboxd",
+  "license": "ISC",
+  "author": "Revanth Mahankali",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "axios": "^1.9.0",
+    "body-parser": "^2.2.0",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0"
+  }
+}

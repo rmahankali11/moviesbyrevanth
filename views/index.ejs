@@ -1,0 +1,125 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="home-page">
+        <div class="intro"><h1>Welcome! Search for a specific movie, or look at the recently popular selection.</h1></div>
+        <form action="/search" method="POST">
+            <div class="title"><input class="home-search" name="title" type="text" placeholder="Search for a movie..." required /></div>
+        </form>
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <% if(page==1) { %>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/previous-page" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="/home">1</a></li>
+                <li class="page-item"><a class="page-link" href="/next-page">2</a></li>
+                <li class="page-item"><a class="page-link" href="/next-next-page">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="/next-page" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <% } else if (page==500) {%>
+                    <li class="page-item">
+                        <a class="page-link" href="/previous-page" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="/home">498</a></li>
+                    <li class="page-item"><a class="page-link" href="/previous-page">499</a></li>
+                    <li class="page-item active"><a class="page-link" href="/previous-previous-page">500</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/next-page" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+                    <% } else { %>
+                        <li class="page-item">
+                            <a class="page-link" href="/previous-page" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                            </a>
+                        </li>
+                        <li class="page-item"><a class="page-link" href="/previous-page">
+                                <%= page-1 %>
+                            </a></li>
+                        <li class="page-item active"><a class="page-link" href="/home">
+                                <%= page %>
+                            </a></li>
+                        <li class="page-item"><a class="page-link" href="/next-page">
+                                <%= page+1 %>
+                            </a></li>
+                        <li class="page-item ">
+                            <a class="page-link" href="/next-page" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+    
+                        <% } %>
+    
+        </ul>
+    </nav>
+
+    <div class="movie-list">
+        <% for(var i=0; i<movies.length;i++) { %>
+            <div class="image-container">
+                <img src=<%- "https://image.tmdb.org/t/p/w500"+movies[i].poster_path %> class="home-movies">
+                <form action="/view-movie" method="GET">
+                    <button type="submit" name="action" value=<%- movies[i].id %> class="btn btn-info center-button">View</button>
+                </form>
+            </div>
+        <% } %>    
+    </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            <% if(page==1) { %>
+                <li class="page-item disabled">
+                    <a class="page-link" href="/previous-page" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item active"><a class="page-link" href="/home">1</a></li>
+                <li class="page-item"><a class="page-link" href="/next-page">2</a></li>
+                <li class="page-item"><a class="page-link" href="/next-next-page">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="/next-page" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+                <% } else if (page==500) {%>
+                    <li class="page-item">
+                        <a class="page-link" href="/previous-page" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="/home">498</a></li>
+                    <li class="page-item"><a class="page-link" href="/previous-page">499</a></li>
+                    <li class="page-item active"><a class="page-link" href="/previous-previous-page">500</a></li>
+                    <li class="page-item disabled">
+                        <a class="page-link" href="/next-page" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                        </li>
+                <% } else { %>
+                    <li class="page-item">
+                        <a class="page-link" href="/previous-page" aria-label="Previous">
+                            <span aria-hidden="true">&laquo;</span>
+                        </a>
+                    </li>
+                    <li class="page-item"><a class="page-link" href="/previous-page"><%= page-1 %></a></li>
+                    <li class="page-item active"><a class="page-link" href="/home"><%= page %></a></li>
+                    <li class="page-item"><a class="page-link" href="/next-page"><%= page+1 %></a></li>
+                    <li class="page-item ">
+                        <a class="page-link" href="/next-page" aria-label="Next">
+                            <span aria-hidden="true">&raquo;</span>
+                        </a>
+                    </li>
+
+                <% } %> 
+                
+        </ul></nav>
+<%- include("partials/footer.ejs") %>

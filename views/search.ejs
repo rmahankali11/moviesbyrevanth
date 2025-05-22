@@ -1,0 +1,25 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="home-page">
+        <div class="intro">
+            <h1>Search results for: "<%= title %>"</h1>
+        </div>
+        <form action="/search" method="POST">
+            <div class="title"><input class="home-search" name="title" type="text" placeholder="Search for a movie..." value=<%- title %> /></div>
+        </form>
+    </div>
+
+    <div class="movie-list">
+        <% for(var i=0; i<movies.length;i++) { %>
+            <div class="image-container">
+                <img src=<%- "https://image.tmdb.org/t/p/w500" +movies[i].poster_path %> class="home-movies">
+                <form action="/view-movie" method="GET">
+                    <button type="submit" name="action" value=<%- movies[i].id %> class="btn btn-info
+                        center-button">View</button>
+                </form>
+            </div>
+            <% } %>
+    </div>
+
+<%- include("partials/footer.ejs") %>
+

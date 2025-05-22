@@ -1,0 +1,39 @@
+<%- include("partials/header.ejs") %>
+
+<div class="tagline">
+ <% if(movie.tagline!="") { %>
+         <h1>"<%= movie.tagline %>" - Watch <%= movie.title %> now!</h1>
+         <% } else { %>
+            <h1><%= movie.title %></h1>
+            <% } %>
+</div>
+<div class="indiv-container">
+    
+   
+    <div class="img"><img src=<%- "https://image.tmdb.org/t/p/w500"+movie.poster_path %> class = "movie-poster"></div>
+    <div class="movie-info">
+        <div class="movie-title"><h2><%= movie.title %> (<%= movie.release_date.slice(0,4) %>)</h2><h3> Average Rating: 
+            <%= Math.round(movie.vote_average*10)/10 %>/10<img src="star-fill.svg" class="star"></h3></div>
+        <div class="director"><h4>Director: <%= director %></h4></div>
+        <div class="actors"><h4>Starring: <%= actors %></h4></div>
+        <div class="synopsis"><h5>Summary: <%= movie.overview %></h5></div>
+        <div class="genres"><h5>Genres: <% for(var i=0;i<movie.genres.length;i++) { %>
+            <% if(i==movie.genres.length-1) { %>
+                <%= movie.genres[i]["name"] %>
+            <% } else {%>
+                <%= movie.genres[i]["name"] %>,
+            <% } }%>
+        </h5>
+        </div>
+        
+        <div>
+            <form action="/random" method="POST">
+                <div class="text-end"> <button type="submit" class="btn btn-warning">Random movie!</button> </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<footer class="py-3" style="background-color:black; margin-top:67px;">
+    <p class="text-center text-light">© Revanth Mahankali</p>
+</footer>
