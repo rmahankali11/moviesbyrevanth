@@ -1,0 +1,22 @@
+<%- include("partials/header.ejs") %>
+
+    <div class="home-page">
+        <div style="margin-left:750px; margin-top:100px;">
+            <h1><%= header %></h1>
+        </div>
+    </div>
+
+    <div class="movie-list">
+        <% for(var i=0; i<movies.length;i++) { %>
+            <div class="image-container">
+                <img src=<%- "https://image.tmdb.org/t/p/w500" +movies[i].poster_path %> class="home-movies">
+                <form action="/view-movie" method="GET">
+                    <button type="submit" name="action" value=<%- movies[i].id %> class="btn btn-info
+                        center-button">View</button>
+                </form>
+            </div>
+            <% } %>
+    </div>
+    <footer class="py-3" style="background-color:black; margin-top:653px;">
+        <p class="text-center text-light">© Revanth Mahankali</p>
+        </footer>

@@ -1,7 +1,7 @@
 <%- include("partials/header.ejs") %>
 
     <div class="home-page">
-        <div class="intro"><h1>Welcome! Search for a specific movie, or look at the recently popular selection.</h1></div>
+        <div class="intro"><h1>Welcome <%= currentName %>! Search for a specific movie, or look at the recently popular selection.</h1></div>
         <form action="/search" method="POST">
             <div class="title"><input class="home-search" name="title" type="text" placeholder="Search for a movie..." required /></div>
         </form>

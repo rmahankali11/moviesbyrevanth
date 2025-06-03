@@ -1,0 +1,73 @@
+<%- include("partials/header.ejs") %>
+
+<body>
+    <div class="tagline">
+        <h1>Reviewing "<%= movie.title %>"</h1>
+    </div>
+    <div class="indiv-container">
+
+
+        <div class="img"><img src=<%- "https://image.tmdb.org/t/p/w500" +movie.poster_path %> class =
+            "movie-poster"></div>
+        <div class="movie-info">
+            <div class="movie-title">
+                <h2>
+                    <%= movie.title %> (<%= movie.release_date.slice(0,4) %>)
+                </h2>
+                <h3> Average Rating:
+                    <%= Math.round(movie.vote_average*10)/10 %>/10<img src="star-fill.svg" class="star">
+                </h3>
+            </div>
+            <div class="director">
+                <h4>Director: <%= director %>
+                </h4>
+            </div>
+            <div class="actors">
+                <h4>Starring: <%= actors %>
+                </h4>
+            </div>
+            <form action="/edit?id=<%= movie.id %>" method="POST">
+            <div class="review">
+                    <% if(locals.rating) {%>
+                    <div class="form-floating rating">
+                        <input class="form-control" name="rating" value = <%- rating %> placeholder="Leave a comment here" id="floatingTextarea2" type="number" autocomplete="off" max="10" min="0" style="width:100px" required>
+                        <label for="floatingTextarea2">Rating</label>
+                    </div>
+                    <div class="form-floating text">
+                        <textarea class="form-control" name="review" placeholder="Leave a comment here" id="floatingTextarea2"
+                            style="height: 100px" autocomplete="off"><%- review %></textarea>
+                        <label for="floatingTextarea2">Thoughts...</label>            
+                    </div>   
+                    <% } else { %>
+                        <div class="form-floating rating">
+                            <input class="form-control" name="rating" placeholder="Leave a comment here" id="floatingTextarea2" type="number"
+                                autocomplete="off" max="10" min="0" style="width:100px" required>
+                            <label for="floatingTextarea2">
+                                Rating
+                            </label>
+                        </div>
+                        <div class="form-floating text">
+                            <textarea class="form-control" name="review" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px" autocomplete="off"></textarea>
+                            <label for="floatingTextarea2">
+                                Thoughts...
+                            </label>
+                            </div>
+                        <% } %>
+                    </div>
+                    <button type="submit" style="margin-left:75px" class="btn btn-success">Submit</button>
+                </form>
+                <div class="buttons">        
+                <form action="/review" method="GET">
+                    <button type="submit"  class="btn btn-dark">Back</button>
+                </form>
+                <form action="/delete?id=<%= movie.id %>" method="POST">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>            
+        </div>
+    </div>
+</body>
+<footer class="py-3" style="background-color:black; margin-top:67px;">
+    <p class="text-center text-light">© Revanth Mahankali</p>
+</footer>

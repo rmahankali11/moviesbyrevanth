@@ -1,5 +1,5 @@
 <%- include("partials/header.ejs") %>
-
+<body>
 <div class="tagline">
  <% if(movie.tagline!="") { %>
          <h1>"<%= movie.tagline %>" - Watch <%= movie.title %> now!</h1>
@@ -26,14 +26,32 @@
         </h5>
         </div>
         
-        <div>
+        <div class="buttons">
+            <% if(watchlist) {%>
+            <form action="/watchlist?imdbId=<%= movie.imdb_id %>&id=<%= movie.id %>&action=add" method="POST">
+                <button type="submit" class="btn btn-light">Add to Watchlist</button>
+            </form>
+            <% } else { %>
+                <form action="/watchlist?imdbId=<%= movie.imdb_id %>&id=<%= movie.id %>&action=remove" method="POST">
+                    <button type="submit" class="btn btn-danger">Remove from Watchlist</button>
+                </form>
+                <% } %>
+            <% if(!reviewed) {%>
+                <form action="/review?imdbId=<%= movie.imdb_id %>&id=<%= movie.id %>&action=review" method="POST">
+                    <button type="submit" class="btn btn-success" disabled>Reviewed</button>
+                </form>
+                <% } else { %>
+                <form action="/review?imdbId=<%= movie.imdb_id %>&id=<%= movie.id %>&action=review" method="POST">
+                    <button type="submit" class="btn btn-success">Review</button>
+                </form>
+            <% } %>
             <form action="/random" method="POST">
                 <div class="text-end"> <button type="submit" class="btn btn-warning">Random movie!</button> </div>
             </form>
         </div>
     </div>
-
 </div>
+</body>
 <footer class="py-3" style="background-color:black; margin-top:67px;">
     <p class="text-center text-light">© Revanth Mahankali</p>
 </footer>

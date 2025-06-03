@@ -21,16 +21,18 @@
                 <form action="/home" method="GET">
                     <li><a href="/home" class="nav-link px-2 text-secondary" type="submit">Home</a></li>
                 </form>
-                <li><a href="#" class="nav-link px-2 text-white">Watchlist (coming soon...)</a></li>
-                <li><a href="#" class="nav-link px-2 text-white">Your Reviews (coming soon...)</a></li>
+                <li><a href="/watchlist" class="nav-link px-2 text-white">Your Watchlist</a></li>
+                <li><a href="/review" class="nav-link px-2 text-white">Your Reviews</a></li>
             </ul>
             <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" action="/search" method="POST"> <input type="text"
                     class="form-control form-control-dark text-bg-dark" name="title" placeholder="Search..." style="color:white"> 
             </form>
             <form action="/random" method="POST">
-                <div class="text-end"> <button type="submit" class="btn btn-warning">Random movie!</button> </div>
+                <div class="text-end"> <button type="submit" class="btn btn-warning" style="margin-right:15px">Random movie!</button> </div>
             </form>
-            <button type="button" class="btn btn-outline-success">Login (coming soon...)</button>
+            <form action="/logout" method="GET">
+                <button type="submit" class="btn btn-outline-success">Logout</button>
+            </form>    
         </div>
         </div>
 </header>
